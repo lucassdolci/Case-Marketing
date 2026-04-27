@@ -1,152 +1,48 @@
-# 📊 Case: Análise de Performance de Campanhas de Marketing
+# Case Marketing — Análise de Performance de Campanhas
 
-> **Pergunta de negócio:** Quais campanhas entregam melhor retorno sobre investimento, e como redistribuir o orçamento para maximizar conversões e reduzir o CAC?
+## Contexto
+Análise de performance de campanhas de mídia paga em três plataformas digitais — Meta, YouTube e Spotify.
+O objetivo foi identificar quais campanhas entregam resultado real, quais estão desperdiçando budget e como redistribuir o investimento para maximizar retorno.
 
----
+## Pergunta de Negócio
+> "Gastamos R$ 141.700 em campanhas no Meta, YouTube e Spotify. Onde está indo dinheiro fora e como redistribuir o orçamento para aumentar conversões e reduzir o CAC?"
 
-## 🧭 Contexto
+## Ferramentas
+- MySQL — extração e análise dos dados
+- Power BI — visualização e dashboard
 
-Uma empresa com presença em três grandes plataformas digitais — **Meta**, **YouTube** e **Spotify** — precisava entender onde seu budget de mídia paga estava gerando resultado real. Com campanhas rodando em paralelo e métricas dispersas, a análise foi estruturada para responder objetivamente:
+## Links
+- 📊 [Portfólio no Notion](https://www.notion.so/Case-Marketing-3408f115aff580cdb207da8d9e8d8cb6)
+- 💻 [Repositório GitHub](https://github.com/lucassdolci/Case-Marketing)
 
-- Quais plataformas entregam o melhor ROAS?
-- Quais campanhas têm CAC fora de controle?
-- Onde cortar e onde investir mais?
 
-**Período analisado:** Janeiro e Fevereiro de 2025  
-**Total de campanhas analisadas:** 18 (3 por plataforma × 2 meses)  
-**Budget total:** R$ 141.700
+## Estrutura do Projeto
+- `data/` — dataset simulado de campanhas (18 linhas × 9 colunas)
+- `queries/` — análises em SQL organizadas por tema
+- `dashboard/` — arquivo Power BI
+- `docs/` — insights e recomendações
 
----
+## Dashboard
 
-## 🛠️ Ferramentas
+### Visão Geral — KPIs Consolidados
+![Visão Geral](dashboard/prints/01_visao_geral.png)
+ROAS consolidado de 3,71x com CAC médio de R$44. Meta lidera em receita gerada com R$27Mi no período analisado.
 
-| Ferramenta     | Uso                                              |
-|----------------|--------------------------------------------------|
-| **MySQL**      | Extração e análise via 5 queries comentadas      |
-| **Power BI**   | Dashboard com 4 páginas e esquema estrela        |
-| **Python**     | Validação e exploração do dataset                |
-| **Excel/CSV**  | Fonte de dados base                              |
-| **GitHub**     | Versionamento e portfólio                        |
+### Performance por Plataforma — ROAS e CAC
+![Performance](dashboard/prints/02_performance_plataforma.png)
+Meta apresenta o melhor ROAS (4,7x) e menor CAC (R$33). Spotify surpreende com ROAS competitivo (3,0x) mesmo com menor investimento. YouTube tem o CAC mais alto do portfólio (R$56).
 
----
+### Campanhas Ruins — Ranking por ROAS
+![Campanhas](dashboard/prints/03_campanhas_ruins.png)
+3 campanhas com ROAS abaixo de 1,5x consomem 20% do budget sem retorno adequado. YouTube Bumper Branding tem o pior desempenho com ROAS de 0,8x.
 
-## 📁 Estrutura do Projeto
+## Análises Realizadas
 
-```
-marketing-performance-case/
-│
-├── 📂 data/
-│   └── campanhas_marketing.csv        # Dataset com 18 linhas
-│
-├── 📂 sql/
-│   └── queries_analise.sql            # 5 queries comentadas (MySQL)
-│
-├── 📂 powerbi/
-│   ├── estrutura_dashboard.md         # Documentação das 4 páginas
-│   └── dashboard_marketing.pbix       # Arquivo Power BI
-│
-├── 📂 docs/
-│   └── insights_recomendacoes.md      # 3 insights acionáveis
-│
-└── README.md
-```
-
----
-
-## 📈 Dashboard — Estrutura (4 Páginas)
-
-### Página 1 — Visão Geral
-KPIs consolidados: ROAS total, CAC médio, CTR médio e total de conversões. Gráfico de receita vs investimento por mês com filtros interativos por plataforma e campanha.
-
-### Página 2 — Por Plataforma
-Comparativo visual entre Meta, YouTube e Spotify com gráfico de radar, scatter (investimento × receita) e tabela detalhada por plataforma.
-
-### Página 3 — Campanhas
-Ranking completo com formatação condicional. Campanhas ruins sinalizadas em vermelho (ROAS < 1.5). Badge de recomendação por status: corte, revisão, monitorar ou manter.
-
-### Página 4 — Redistribuição de Orçamento
-Simulador de realocação de budget com projeção de impacto em conversões, CAC e receita. Waterfall chart com ganho estimado pela otimização.
-
----
-
-## 🗃️ Modelo de Dados — Esquema Estrela
-
-```
-dCalendario ──┐
-              ├──► fCampanhas (FATO)
-dPlataforma ──┤
-              │
-dCampanha  ───┘
-```
-
-**Tabela fato:** `fCampanhas` — investimento, impressões, cliques, conversões, receita  
-**Dimensões:** `dPlataforma`, `dCampanha`, `dCalendario`
-
----
-
-## 🔍 Principais Métricas Analisadas
-
-| Métrica | Fórmula                            | Benchmark       |
-|---------|------------------------------------|-----------------|
-| ROAS    | receita / investimento             | ≥ 3.0x          |
-| CAC     | investimento / conversões          | Depende do ticket|
-| CTR     | (cliques / impressões) × 100       | Meta: 0.9% / YT: 0.65% / Spotify: 0.25% |
-| ROI     | (receita − investimento) / invest. | > 100%          |
-| Taxa Conv.| conversões / cliques             | ≥ 2.0%          |
-
----
-
-## 💡 Insights Principais
-
-### 1. Meta domina em eficiência de conversão
-O retargeting de carrinho e vendas na Meta apresentou ROAS médio de **5.48x**, com CAC de R$ 29–32. Campanhas de prospeccão, por outro lado, tiveram ROAS abaixo de 1.1x — ineficientes para o estágio do funil.
-
-### 2. YouTube gera alcance, mas apenas InStream converte
-As campanhas Bumper no YouTube tiveram ROAS de **0.73x em janeiro** — abaixo do ponto de equilíbrio. O volume de impressões (3.5M) não se converte em receita. InStream, com ROAS de 5.48x, é o formato que sustenta a plataforma.
-
-### 3. Spotify Podcast Ads é a joia escondida
-Com ROAS de 4.50–4.75x e CAC de R$ 35–40, os Podcast Ads do Spotify superam YouTube e ficam próximos do Meta em eficiência, porém com investimento muito menor. Há espaço claro para escalar essa campanha.
-
----
-
-## 📊 Resultado da Redistribuição Proposta
-
-| Plataforma | Atual (R$) | Proposto (R$) | Variação |
-|------------|------------|----------------|----------|
-| Meta       | 48.200     | 63.765 (+45%)  | +32% ↑   |
-| YouTube    | 59.200     | 49.595 (35%)   | -16% ↓   |
-| Spotify    | 34.300     | 28.340 (20%)   | -17% ↓   |
-
-**Impacto projetado:**
-- Conversões: **+18%** (+519/mês)
-- CAC: **-22%** (R$55 → R$43)
-- Receita: **+24%** (R$591.860 → R$733.906)
-
----
-
-## ▶️ Como Reproduzir
-
-```bash
-# 1. Clone o repositório
-git clone https://github.com/seu-usuario/marketing-performance-case
-
-# 2. Importe o CSV no MySQL e execute as queries
-mysql -u root -p < sql/queries_analise.sql
-
-# 3. Abra o arquivo .pbix no Power BI Desktop
-# Atualize a fonte de dados apontando para /data/campanhas_marketing.csv
-```
-
----
-
-## 👤 Autor
-
-**[Seu Nome]**  
-Analista de Dados | SQL · Power BI · Python  
-[LinkedIn](https://linkedin.com/in/seu-perfil) · [GitHub](https://github.com/seu-usuario)
-
----
-
-## 📄 Licença
-
-Este projeto foi desenvolvido para fins de portfólio. Dataset fictício criado para análise.
+| Arquivo | Descrição |
+| --- | --- |
+| 01_queries_geral_analise | Visão geral consolidada de todas as campanhas |
+| 02_receita_investimento_por_plataforma | Receita e investimento agrupados por plataforma |
+| 03_cac_por_campanha | Custo de aquisição de cliente por campanha |
+| 04_roas_por_campanha | Retorno sobre investimento por campanha |
+| 05_ctr_por_campanha | Taxa de cliques por campanha e plataforma |
+| 06_ranking_campanhas_ruins | Score de ineficiência e recomendação de corte |
