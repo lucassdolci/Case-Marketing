@@ -11,8 +11,8 @@ O case analisa o desempenho de campanhas de marketing pago, olhando a evolução
 - Power BI — visualização e dashboard
 
 ## Links
-- 📊 [Portfólio no Notion](https://www.notion.so/Case-Marketing-3408f115aff580cdb207da8d9e8d8cb6)
-- 💻 [Repositório GitHub](https://github.com/lucassdolci/Case-Marketing)
+- [Portfólio no Notion](https://www.notion.so/Case-Marketing-3408f115aff580cdb207da8d9e8d8cb6)
+- [Repositório GitHub](https://github.com/lucassdolci/Case-Marketing)
 
 ## Estrutura do Projeto
 - `data/` — dataset simulado de campanhas (18 linhas × 9 colunas)
