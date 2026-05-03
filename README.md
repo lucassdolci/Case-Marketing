@@ -23,15 +23,15 @@ O case analisa o desempenho de campanhas de marketing pago, olhando a evolução
 ## Dashboard
 
 ### Visão Geral — KPIs Consolidados
-![Visão Geral](dashboard/prints/01_visao_geral.png)
+![Visão Geral](01_visao_geral.png)
 ROAS consolidado de 3,71x com CAC médio de R$44. Meta lidera em receita gerada com R$27Mi no período analisado.
 
 ### Performance por Plataforma — ROAS e CAC
-![Performance](dashboard/prints/02_performance_plataforma.png)
+![Performance](02_performance_plataforma.png)
 Meta apresenta o melhor ROAS (4,7x) e menor CAC (R$33). Spotify surpreende com ROAS competitivo (3,0x) mesmo com menor investimento. YouTube tem o CAC mais alto do portfólio (R$56).
 
 ### Campanhas Ruins — Ranking por ROAS
-![Campanhas](dashboard/prints/03_campanhas_ruins.png)
+![Campanhas](03_campanhas_ruins.png)
 3 campanhas com ROAS abaixo de 1,5x consomem 20% do budget sem retorno adequado. YouTube Bumper Branding tem o pior desempenho com ROAS de 0,8x.
 
 ## O que os dados mostraram
